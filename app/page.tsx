@@ -73,6 +73,25 @@ export default function HomePage() {
         <div className={styles.orb3}></div>
       </div>
 
+      {/* Title */}
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '40px',
+        opacity: isVisible ? 1 : 0,
+        transition: 'opacity 0.8s ease-in'
+      }}>
+        <h1 style={{
+          fontSize: '48px',
+          fontWeight: 'bold',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          marginBottom: '10px'
+        }}>
+          #skipSurvey Demo
+        </h1>
+      </div>
+
       {/* Main content */}
       <div className={`${styles.card} ${isVisible ? styles.visible : ''}`}>
         {/* Avatar */}
@@ -127,7 +146,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <div className={styles.footer}>
-        <span className={styles.footerText}>Silent Survey AI • SurveyMonkey Integration</span>
+        <span className={styles.footerText}>#skipSurvey • SurveyMonkey Integration</span>
       </div>
     </div>
   );
