@@ -1,8 +1,8 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 
 // Initialize the API client
 // Note: User must set GEMINI_API_KEY in .env
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export async function generateGeminiReport(context: {
     incidentId: string;
@@ -17,7 +17,6 @@ export async function generateGeminiReport(context: {
     }
 
     try {
-        const model = genAI.getGenerativeModel({ model: 'gemini-3-flash-preview' });
 
         // 1. Construct the Context
         const eventSummary = context.events.map(e => {
@@ -60,15 +59,17 @@ export async function generateGeminiReport(context: {
         }
         `;
 
-        // 2. Call Gemini
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text();
+        // 2. Call Gemini using the new SDK
+        const result = await genAI.models.generateContent({
+            model: 'gemini-3-flash-preview',
+            contents: prompt
+        });
+
+        const text = result.text;
 
         // 3. Parse JSON
-        // 3. Parse JSON
         // Robust cleaning in case model ignores "no markdown" rule
-        const jsonStr = text.replace(/```json/g, '').replace(/```/g, '').trim();
+        const jsonStr = (text || '').replace(/```json/g, '').replace(/```/g, '').trim();
 
         console.log('[GEMINI] Raw Response:', text);
 
