@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id        String   @id @default(uuid())
+  sessionId String
+  ts        BigInt
+  page      String
+  type      String
+  meta      String   // Stored as JSON string since SQLite doesn't natively support JSON type like Postgres
+  createdAt DateTime @default(now())
+}
+
+model Incident {
+  id                String   @id @default(uuid())
+  sessionId         String
+  page              String
+  
+  triggerType       String   // e.g. "rage_click"
+  confidence        Float
+  frictionScore     Int      // 0-100
+  
+  voiceTranscript   String?
+  voiceSummary      String?
+  
+  sentryEventId     String?
+  sentryIssueId     String?
+  sentryReplayUrl   String?
+  
+  rootCauseRanking  String?  // JSON string
+  reproScript       String?  // Text
+  geminiReport      String?  // JSON string
+  
+  createdAt         DateTime @default(now())
+}
+
+model SuccessSignal {
+  id                String   @id @default(uuid())
+  sessionId         String
+  flowName          String
+  
+  timeToCompleteMs  Int
+  frictionScore     Int
+  errorCount        Int
+  performanceScore  Int
+  
+  createdAt         DateTime @default(now())
+}

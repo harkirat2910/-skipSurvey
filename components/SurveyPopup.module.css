@@ -1,0 +1,140 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.popup {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.4s ease-out;
+    border: 2px solid #69f0ae;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.monkeyEmoji {
+    font-size: 80px;
+    margin-bottom: 20px;
+    filter: hue-rotate(90deg) brightness(1.2);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.speechBubble {
+    position: relative;
+    background: white;
+    color: #1a1a2e;
+    padding: 20px 25px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    max-width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.speechBubble::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-bottom-color: white;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.button {
+    flex: 1;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.yesButton {
+    background: #69f0ae;
+    color: #1a1a2e;
+}
+
+.yesButton:hover {
+    background: #52e89a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(105, 240, 174, 0.4);
+}
+
+.noButton {
+    background: #ff5252;
+    color: white;
+}
+
+.noButton:hover {
+    background: #ff3838;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 82, 82, 0.4);
+}
+
+.button:active {
+    transform: translateY(0);
+}

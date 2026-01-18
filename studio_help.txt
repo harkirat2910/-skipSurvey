@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "db:studio": "prisma studio"
+  }
+}

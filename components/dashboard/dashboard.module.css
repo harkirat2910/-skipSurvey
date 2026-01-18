@@ -1,0 +1,229 @@
+.dashboardContainer {
+    min-height: 100vh;
+    background: #111116;
+    /* Sentry-ish Dark */
+    color: #e2e2e2;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 40px;
+    overflow-x: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(90deg, #A0aec0 0%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: #8898aa;
+    margin: 5px 0 0 0;
+    font-size: 1rem;
+}
+
+/* CARDS */
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 24px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(147, 112, 219, 0.3);
+    /* Purple tint on hover */
+}
+
+/* INCIDENT CARD SPECIFIC */
+.incidentCard {
+    composes: card;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.incidentCard::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #E53935 0%, #B71C1C 100%);
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tagFriction {
+    background: rgba(229, 57, 53, 0.15);
+    color: #ff8a80;
+    border: 1px solid rgba(229, 57, 53, 0.3);
+}
+
+.tagSuccess {
+    background: rgba(66, 186, 150, 0.15);
+    color: #69f0ae;
+    border: 1px solid rgba(66, 186, 150, 0.3);
+}
+
+/* PIPELINE GRAPHIC */
+.pipelineContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.01) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 40px;
+}
+
+.node {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #1e1e24;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.nodeActive {
+    border-color: #6C5DD3;
+    background: rgba(108, 93, 211, 0.1);
+    box-shadow: 0 0 20px rgba(108, 93, 211, 0.3);
+}
+
+.nodeLabel {
+    position: absolute;
+    bottom: -30px;
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+}
+
+.connector {
+    flex: 1;
+    height: 2px;
+    background: #333;
+    margin: 0 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.connector::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #6C5DD3, transparent);
+    animation: flow 2s infinite linear;
+}
+
+@keyframes flow {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 200%;
+    }
+}
+
+/* CODE BLOCK */
+.codeBlock {
+    background: #0d0d10;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 12px;
+    color: #a6accd;
+    border: 1px solid #333;
+    overflow-x: auto;
+}
+
+/* ANALYTICS GRID */
+.grid {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 30px;
+}
+
+.statsRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.statValue {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+}
+
+.statLabel {
+    font-size: 0.85rem;
+    color: #8898aa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* SVG CHARTS */
+.barContainer {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 100px;
+}
+
+.bar {
+    flex: 1;
+    background: #333;
+    border-radius: 4px 4px 0 0;
+    transition: height 1s ease-out;
+    position: relative;
+}
+
+.bar:hover {
+    background: #6C5DD3;
+}
+
+.barLabel {
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    color: #666;
+}
