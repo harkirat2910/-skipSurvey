@@ -10,7 +10,7 @@ import monitorImg from '@/components/assets/97324.jpg';
 import { FrictionDetector } from '@/lib/friction';
 import AvatarWidget from '@/components/AvatarWidget';
 import SentryManualLoader from '@/components/SentryManualLoader';
-import { getSessionId } from '@/lib/session';
+import FrictionTestPanel from '@/components/FrictionTestPanel'; import { getSessionId } from '@/lib/session';
 import { tracker } from '@/lib/tracker';
 import { submitCartRevisitAnswer, submitShippingCostAnswer } from '@/lib/surveymonkey-responses';
 
@@ -217,6 +217,9 @@ export default function CheckoutPage() {
       <div className={styles.navbar}>
         <div className={styles.logo}>Amazonia</div>
       </div>
+
+      {/* Friction Testing Panel */}
+      <FrictionTestPanel />
 
       <div className={styles.mainContent}>
 
